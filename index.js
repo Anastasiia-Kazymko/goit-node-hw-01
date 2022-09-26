@@ -5,26 +5,26 @@ const contacts = require("./contacts");
 const invokeAction = async ({ action, id, name, email, phone }) => {
   switch (action) {
     case "list":
-      const allContacts = await contacts.listContacts();
+      console.table(await contacts.listContacts());
       break;
     case "get":
-      const oneContacts = await contacts.getContactById(id);
+      console.log(await contacts.getContactById(id));
       break;
     case "add":
-      const newContacts = await contacts.addContact({ name, email, phone });
+      await contacts.addContact({ name, email, phone });
       break;
     case "update":
-      const updateContacts = await contacts.updateContactById(id, {
+      await contacts.updateContactById(id, {
         name,
         email,
         phone,
       });
       break;
     case "remove":
-      const deleteContact = await contacts.removeContact(id);
+      await contacts.removeContact(id);
       break;
     default:
-      console.log("Unknow action");
+      console.warn("Unknow action");
   }
 };
 
